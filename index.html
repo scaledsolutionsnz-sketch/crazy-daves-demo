@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crazy Daves | Riccarton, Christchurch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;color:#1a1a1a;background:#fff;}
+nav{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(15,15,35,0.97);backdrop-filter:blur(8px);padding:0;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 1.2rem;}
+.nav-logo{font-size:1.3rem;font-weight:900;color:#fff;text-decoration:none;padding:1rem 0;letter-spacing:-0.03em;}
+.nav-logo span{color:#f59e0b;}
+.nav-cta{background:#f59e0b;color:#111;padding:0.55rem 1.2rem;border-radius:6px;font-weight:800;font-size:0.85rem;text-decoration:none;margin:0.75rem 0;letter-spacing:0.02em;}
+.hero{min-height:100vh;background:linear-gradient(135deg,#0f0f23 0%,#1a0a2e 50%,#0f0f23 100%);display:flex;align-items:center;padding-top:72px;}
+.hero-content{max-width:720px;margin:0 auto;padding:4rem 1.5rem;text-align:center;}
+.hero-badge{display:inline-block;background:#f59e0b;color:#111;font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:100px;margin-bottom:1.5rem;}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.04em;margin-bottom:1.2rem;}
+.hero h1 em{color:#f59e0b;font-style:normal;}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,0.75);margin-bottom:2rem;max-width:520px;margin-left:auto;margin-right:auto;}
+.btn-primary{background:#f59e0b;color:#111;padding:0.9rem 2rem;border-radius:8px;font-weight:800;font-size:1rem;text-decoration:none;display:inline-block;margin-right:0.8rem;}
+.btn-secondary{background:rgba(255,255,255,0.1);color:#fff;padding:0.9rem 2rem;border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;display:inline-block;border:1.5px solid rgba(255,255,255,0.2);}
+.section{padding:5rem 1.5rem;}
+.section-title{text-align:center;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:900;letter-spacing:-0.03em;margin-bottom:0.75rem;}
+.section-sub{text-align:center;color:#666;font-size:1rem;margin-bottom:3rem;max-width:520px;margin-left:auto;margin-right:auto;}
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;max-width:1100px;margin:0 auto;}
+.cat-card{background:linear-gradient(135deg,#0f0f23,#1a0a2e);border-radius:12px;padding:2rem 1.5rem;text-align:center;border:1px solid rgba(245,158,11,0.2);}
+.cat-icon{font-size:2.5rem;margin-bottom:0.75rem;}
+.cat-card h3{color:#fff;font-weight:700;font-size:1rem;margin-bottom:0.4rem;}
+.cat-card p{color:rgba(255,255,255,0.55);font-size:0.85rem;}
+.about{background:#f8f9fa;padding:5rem 1.5rem;}
+.about-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+.about-img{width:100%;border-radius:14px;height:380px;object-fit:cover;}
+.about h2{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:900;letter-spacing:-0.03em;margin-bottom:1rem;}
+.about h2 em{color:#f59e0b;font-style:normal;}
+.about p{color:#555;line-height:1.7;margin-bottom:1rem;}
+.highlight-box{background:#fff;border-left:4px solid #f59e0b;padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin-top:1.5rem;}
+.highlight-box p{color:#333;font-weight:600;font-size:0.95rem;margin:0;}
+.reviews{background:#fff;padding:5rem 1.5rem;}
+.stars{color:#f59e0b;font-size:1.4rem;}
+.rating-big{font-size:3rem;font-weight:900;}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;max-width:1000px;margin:2.5rem auto 0;}
+.review-card{background:#f8f9fa;border-radius:12px;padding:1.5rem;}
+.review-card .stars{font-size:1rem;margin-bottom:0.5rem;}
+.review-card p{color:#444;font-size:0.9rem;line-height:1.6;font-style:italic;margin-bottom:0.75rem;}
+.reviewer{font-weight:700;font-size:0.85rem;}
+.contact{background:#0f0f23;padding:5rem 1.5rem;}
+.contact-inner{max-width:640px;margin:0 auto;}
+.contact .section-title{color:#fff;}
+.contact .section-sub{color:rgba(255,255,255,0.55);}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-weight:600;font-size:0.88rem;margin-bottom:0.4rem;color:rgba(255,255,255,0.8);}
+.form-group input,.form-group textarea{width:100%;padding:0.85rem 1rem;border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;font-size:0.95rem;font-family:inherit;background:rgba(255,255,255,0.08);color:#fff;}
+.form-group textarea{height:130px;resize:vertical;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.btn-submit{width:100%;background:#f59e0b;color:#111;border:none;padding:1rem;border-radius:8px;font-weight:800;font-size:1rem;cursor:pointer;}
+footer{background:#0a0a1a;color:rgba(255,255,255,0.5);padding:2.5rem 1.5rem;text-align:center;}
+.footer-logo{font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:1rem;letter-spacing:-0.03em;}
+.footer-logo span{color:#f59e0b;}
+footer p{font-size:0.85rem;margin-bottom:0.3rem;}
+.footer-bottom{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.1);font-size:0.78rem;}
+@media(max-width:768px){.about-inner{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}.btn-primary,.btn-secondary{display:block;margin:0 auto 0.8rem;max-width:240px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Crazy<span>Daves</span></a>
+    <a href="#contact" class="nav-cta">Find Us</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">📍 Riccarton, Christchurch</div>
+    <h1>Everything You <em>Didn't Know</em> You Needed</h1>
+    <p>Christchurch's go-to for bargains, novelties, party supplies, gifts, and the kind of finds you won't see anywhere else. Come in and have a look around.</p>
+    <a href="#shop" class="btn-primary">What's In Store</a>
+    <a href="#contact" class="btn-secondary">Get Directions</a>
+  </div>
+</section>
+
+<section class="section" id="shop" style="background:#0f0f23;">
+  <h2 class="section-title" style="color:#fff;">What You'll Find</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,0.55);">A huge range of products at prices that won't leave you stunned — in a bad way.</p>
+  <div class="cats-grid">
+    <div class="cat-card"><div class="cat-icon">🎉</div><h3>Party Supplies</h3><p>Balloons, banners, tableware, decorations for every occasion.</p></div>
+    <div class="cat-card"><div class="cat-icon">🎁</div><h3>Gifts & Novelties</h3><p>Quirky gifts, novelty items, and something for everyone on your list.</p></div>
+    <div class="cat-card"><div class="cat-icon">🏠</div><h3>Homewares</h3><p>Kitchen gadgets, storage, decor, and everyday household essentials.</p></div>
+    <div class="cat-card"><div class="cat-icon">🧸</div><h3>Toys & Games</h3><p>Kids' toys, outdoor games, puzzles, and activity sets.</p></div>
+    <div class="cat-card"><div class="cat-icon">🌿</div><h3>Seasonal Specials</h3><p>Christmas, Easter, Halloween, and seasonal stock that changes regularly.</p></div>
+    <div class="cat-card"><div class="cat-icon">💸</div><h3>Great Prices</h3><p>Quality products at prices that make sense. No tricks, just value.</p></div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-inner">
+    <img class="about-img" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80" alt="Store interior">
+    <div>
+      <h2>Crazy Good Value.<br><em>Seriously.</em></h2>
+      <p>Crazy Daves has been part of the Riccarton community, stocking the kind of products that make people smile — whether it's finding a last-minute birthday gift, stocking up for a party, or discovering something you didn't know existed but absolutely needed.</p>
+      <p>We're always getting new stock in, so it's always worth a browse. There's something for everyone — kids, adults, homeowners, gift-givers, and bargain hunters alike.</p>
+      <div class="highlight-box"><p>📍 Located in Riccarton, Christchurch — call ahead to check hours or enquire about specific products.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div style="text-align:center;">
+    <div class="rating-big">4.9</div>
+    <div class="stars">★★★★★</div>
+    <p style="color:#666;font-size:0.9rem;margin-top:0.3rem;">Google Reviews</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card"><div class="stars">★★★★★</div><p>"Always something interesting in there. I've been going to Crazy Daves for ages — brilliant for last-minute gifts and party stuff. Can't beat the prices."</p><div class="reviewer">— Rachel B.</div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p>"Great little shop, staff are friendly and helpful. Found exactly what I needed for a birthday party at a fraction of what I'd pay elsewhere. Will be back!"</p><div class="reviewer">— Jason K., Riccarton</div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p>"Love this place. New stock always coming in, loads of variety. Picked up some hilarious gifts for Secret Santa. Highly recommend."</p><div class="reviewer">— Melissa T.</div></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-sub">Questions about stock? Looking for something specific? Send us a message.</p>
+    <form action="https://api.staticforms.xyz/submit" method="post">
+      <input type="hidden" name="accessKey" value="sf_768da8d33927e7f4f241d0a6">
+      <input type="hidden" name="subject" value="New enquiry from Crazy Daves website">
+      <input type="hidden" name="redirectTo" value="https://crazy-daves-demo.vercel.app/thank-you.html">
+      <div class="form-row">
+        <div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>
+        <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="021 000 0000"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required></div>
+      <div class="form-group"><label>Message</label><textarea name="message" placeholder="What are you looking for, or any questions..." required></textarea></div>
+      <button type="submit" class="btn-submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Crazy<span>Daves</span></div>
+  <p>📍 Riccarton, Christchurch, New Zealand</p>
+  <p>📞 <a href="tel:033436234" style="color:rgba(255,255,255,0.5);text-decoration:none;">03 343 6234</a></p>
+  <p>✉️ <a href="mailto:crazydaves.bills@gmail.com" style="color:rgba(255,255,255,0.5);text-decoration:none;">crazydaves.bills@gmail.com</a></p>
+  <div class="footer-bottom">© 2025 Crazy Daves. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
