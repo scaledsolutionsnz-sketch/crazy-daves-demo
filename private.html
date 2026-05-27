@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Feedback | Crazy Daves</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --accent: #d4431e; --dark: #0d0d0f; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Barlow', sans-serif; background: var(--dark); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+  .card { background: #161618; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 48px 40px; max-width: 520px; width: 100%; }
+  .logo { font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 28px; text-align: center; }
+  .logo span { color: var(--accent); }
+  h2 { font-family: 'Oswald', sans-serif; font-size: 1.7rem; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+  p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.6; margin-bottom: 24px; }
+  .rating-display { display: flex; gap: 4px; margin-bottom: 20px; }
+  .rating-star { color: #f5a623; font-size: 1.5rem; }
+  .form-group { margin-bottom: 14px; }
+  input, textarea { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 13px 16px; border-radius: 8px; font-family: 'Barlow', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.3); }
+  input:focus, textarea:focus { border-color: var(--accent); }
+  textarea { min-height: 120px; resize: vertical; }
+  button { width: 100%; background: var(--accent); color: #fff; border: none; padding: 15px; border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+  button:hover { background: #e8643e; }
+  .success { display: none; text-align: center; padding: 32px 0; }
+  .success h3 { font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+  .success p { color: rgba(255,255,255,0.5); }
+  .back { display: inline-block; margin-top: 24px; color: rgba(255,255,255,0.3); font-size: 0.85rem; text-decoration: none; }
+  .back:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">Crazy <span>Daves</span></div>
+  <div id="formSection">
+    <h2>Your Feedback</h2>
+    <p>We're sorry the experience wasn't perfect. Your thoughts go directly to our team and help us improve — this won't be posted publicly.</p>
+    <div class="rating-display" id="ratingDisplay"></div>
+    <form action="https://api.staticforms.xyz/submit" method="POST" id="privateForm">
+      <input type="hidden" name="apiKey" value="sf_768da8d33927e7f4f241d0a6">
+      <input type="hidden" name="subject" value="Private Feedback — Crazy Daves">
+      <input type="hidden" name="rating" id="ratingField" value="">
+      <div class="form-group"><input type="text" name="firstName" placeholder="Your Name" required></div>
+      <div class="form-group"><input type="email" name="email" placeholder="Your Email" required></div>
+      <div class="form-group"><textarea name="message" placeholder="What could we have done better?" required></textarea></div>
+      <button type="submit">Send Feedback</button>
+    </form>
+  </div>
+  <div class="success" id="successMsg">
+    <h3>Thanks for Telling Us</h3>
+    <p>We've received your feedback and will use it to improve. We appreciate you taking the time.</p>
+    <a href="index.html" class="back">&#8592; Back to website</a>
+  </div>
+</div>
+<script>
+  const p = new URLSearchParams(window.location.search);
+  const rating = p.get('rating') || '';
+  document.getElementById('ratingField').value = rating;
+  const disp = document.getElementById('ratingDisplay');
+  for (let i = 0; i < 5; i++) {
+    const s = document.createElement('span');
+    s.className = 'rating-star';
+    s.innerHTML = i < parseInt(rating) ? '&#9733;' : '&#9734;';
+    disp.appendChild(s);
+  }
+  document.getElementById('privateForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(this);
+    fetch('https://api.staticforms.xyz/submit', { method: 'POST', body: data })
+      .then(() => { document.getElementById('formSection').style.display = 'none'; document.getElementById('successMsg').style.display = 'block'; })
+      .catch(() => { document.getElementById('formSection').style.display = 'none'; document.getElementById('successMsg').style.display = 'block'; });
+  });
+</script>
+</body>
+</html>
